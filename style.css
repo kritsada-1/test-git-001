@@ -1,0 +1,278 @@
+/* ==========================================
+   RESET & SETUP
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Prompt', sans-serif;
+}
+
+:root {
+    --primary-blue: #00d2ff;
+    --accent-cyan: #3a7bd5;
+    --bg-dark: #0a1128;
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+}
+
+body {
+    background-color: #060b19;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   BACKGROUND TECH EFFECTS
+   ========================================== */
+.bg-glow {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, rgba(58, 123, 213, 0.05) 50%, rgba(0,0,0,0) 70%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+.bg-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ==========================================
+   MAIN LAYOUT
+   ========================================== */
+.main-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* ==========================================
+   PROFILE CARD (GLASS-MORPHISM TECH)
+   ========================================== */
+.profile-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    border-radius: 28px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 210, 255, 0.15);
+    margin-bottom: 35px;
+    position: relative;
+}
+
+/* กรอบรูปภาพทรงกลมเอกลักษณ์ ลุค Tech */
+.avatar-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+}
+
+.avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+    animation: spin 8s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease;
+}
+
+.avatar-container:hover .profile-avatar {
+    transform: scale(1.05);
+}
+
+/* ข้อความข้อมูลโปรไฟล์ */
+.tech-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--primary-blue);
+}
+
+.user-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.info-badges {
+    display: flex;
+    gap: 15px;
+}
+
+.info-box {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #64748b;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0284c7;
+}
+
+/* ==========================================
+   FAVORITES SECTION
+   ========================================== */
+.content-section {
+    background: rgba(10, 17, 40, 0.6);
+    border-radius: 28px;
+    padding: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-title {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 20px;
+    border-left: 4px solid var(--primary-blue);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 210, 255, 0.25);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.icon-box {
+    font-size: 1.8rem;
+    background: #f0f9ff;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.card-number {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (สำหรับมือถือ)
+   ========================================== */
+@media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+
+    .info-badges {
+        justify-content: center;
+    }
+
+    .user-name {
+        font-size: 1.7rem;
+    }
+}
